@@ -5,7 +5,7 @@ export default class FilterString extends Component{
     constructor(){
         super()
         this.state ={
-            unfilteredArray: ['merchant a sells clothes', 'merchant b sells shoes', 'merchant c sells home', '', ''],
+            unfilteredArray: ['Brittney', 'Justin', 'Hana', 'Josh', 'Mins', 'Archie', 'Tamara', 'Kiley', 'Blake', 'Artyom', 'Kevin', 'Sterling', 'Caroline', 'Kelsey', 'Kelsi', 'April', 'Rachel', 'Keith', 'Mickey', 'Austin'],
             userInput: '',
             filteredArray: []
         }
@@ -17,6 +17,10 @@ export default class FilterString extends Component{
 
         }
 
+        filterNames(userInput){
+            
+        }
+
     render(){
         return(
 
@@ -25,7 +29,7 @@ export default class FilterString extends Component{
                 <h4>Filter String</h4>
                 <span className="puzzleText">unFiltered Array</span>
                 <input className="inputLine" onChange={(e)=>this.handleChange(e.target.value) }/>
-                <button className="confirmationButton">
+                <button className="confirmationButton" onClick={() =>this.filterNames(this.state.userInput)}>Filter
                 </button>
                 <span className="resultsBox filterStringRB">filteredArray</span>
 
