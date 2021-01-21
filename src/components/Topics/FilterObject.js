@@ -5,7 +5,7 @@ export default class FilterObject extends Component {
     constructor(){
         super()
         this.state = {
-            unFilteredAnimals: [{name: 'Hana', species: 'dog', age: 5 }, {name: 'Mins', species: 'cat', age: 11}, {name: 'atlas', species: 'dog', age: 4}],
+            unFilteredAnimals: [{name: 'Hana', species: 'dog'}, {name: 'Mins', species: 'cat'}, {name: 'atlas', species: 'dog'}, {name: 'Archie', species: 'cat'}],
             userInput: '',
             filteredAnimals: []
         }
@@ -17,23 +17,33 @@ export default class FilterObject extends Component {
 
     }
 
-    updateArray(prop){
-        
-    let filterArray = [];
-    let origArray = this.state.unFilteredAnimals;
-    
+    filterAnimals(prop){
 
-this.setState({filteredAnimals: filterArray})
+    let unFilteredAnimals = this.state.unFilteredAnimals;   
+    let filterArray = [];
+  
+    for(let i =0; i <unFilteredAnimals.length; i++){
+        for(let key in unFilteredAnimals){
+            if(unFilteredAnimals[i][key] === prop){
+                filterArray.push(unFilteredAnimals[i])
+               
+            }
+
+        }
+       
+        }
+    
+        this.setState({filteredAnimals: filterArray})
     }
 
     render(){
         return(
             <div className="puzzleBox filterObjectPB">
                 <h4>Filter Object</h4>
-                <span className="puzzleText">UnFilteredAnimals</span>
-                <input className="inputLine" onChange={(e)=>this.updateValue(e.target.value)}/>
-                <button className="confirmationButton" onClick={(e)=>this.updateArray(e.target.value) }></button>
-                <span className="resultsBox filterObjectRB">filteredAnimals</span>
+                <span className="puzzleText"> Original: {JSON.stringify(this.state.unFilteredAnimals, null, 10)}</span>
+                <input className="inputLine" onChange={(e)=>this.handleChange(e.target.value)}/>
+                <button className="confirmationButton" onClick={(e)=>this.filterAnimals(this.state.userInput)}>Filter</button>
+                <span className="resultsBox filterObjectRB">Filtered: {JSON.stringify(this.state.filteredAnimals, null, 10)}</span>
 
             </div>
             
