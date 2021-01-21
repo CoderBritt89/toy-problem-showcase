@@ -5,7 +5,7 @@ export default class FilterObject extends Component {
     constructor(){
         super()
         this.state = {
-            unFilteredAnimals: [{name: 'Hana', breed: 'Austrailian Shepherd', age: 5 }, {name: 'Mins', breed: 'cat', age: 11}, {name: 'atlas', breed: 'labradoodle', age: 4}],
+            unFilteredAnimals: [{name: 'Hana', species: 'dog', age: 5 }, {name: 'Mins', species: 'cat', age: 11}, {name: 'atlas', species: 'dog', age: 4}],
             userInput: '',
             filteredAnimals: []
         }
@@ -17,13 +17,22 @@ export default class FilterObject extends Component {
 
     }
 
+    updateArray(prop){
+        
+    let filterArray = [];
+    let origArray = this.state.unFilteredAnimals;
+    
+
+this.setState({filteredAnimals: filterArray})
+    }
+
     render(){
         return(
             <div className="puzzleBox filterObjectPB">
                 <h4>Filter Object</h4>
                 <span className="puzzleText">UnFilteredAnimals</span>
                 <input className="inputLine" onChange={(e)=>this.updateValue(e.target.value)}/>
-                <button className="confirmationButton"></button>
+                <button className="confirmationButton" onClick={(e)=>this.updateArray(e.target.value) }></button>
                 <span className="resultsBox filterObjectRB">filteredAnimals</span>
 
             </div>
