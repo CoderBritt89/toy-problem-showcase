@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-export default class Palindrome extends Component {
+ class Palindrome extends Component {
     constructor(){
         super()
         this.state = {
@@ -14,16 +14,30 @@ export default class Palindrome extends Component {
         this.setState({userInput: val})
     }
 
+    isPalindrome(userInput){
+        let forwards = userInput;
+        let backwards = userInput;
+    
+    backwards = backwards.split('');
+    backwards = backwards.reverse();
+    backwards = backwards.join('');
+    
+
+    if (forwards === backwards){
+        this.setState({palindrome: 'true'})
+    } else {
+        this.setState({palindrome: 'false'})
+    }
+    }
+
     render(){
 
         return(
             <div className="puzzleBox filterStringPB">
             <h4>Palindrome</h4>
-            <span className="resultsBox">palindrome
-            </span>
             <input className="inputLine" onChange={(e)=>this.handleChange(e.target.value)} />
-            <button className="confirmationButton" onClick={()=>this.isPalindrome(this.state.UserInput) }>Check</button>
-            
+            <button className="confirmationButton" onClick={()=>this.isPalindrome(this.state.userInput) }>Check</button>
+            <span className="resultsBox">palindrome: {this.state.palindrome}</span>
             </div>
          
 
@@ -32,3 +46,5 @@ export default class Palindrome extends Component {
 
 
 }
+
+export default Palindrome;
